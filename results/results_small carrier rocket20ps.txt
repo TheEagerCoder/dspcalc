@@ -1,0 +1,273 @@
+
+=================================================
+Small Carrier Rocket
+
+64 Assembling Machines needed to produce 20.0 per second
+
+Needs 32.0 Dyson Sphere Component per second
+Needs 64.0 Deuteron Fuel Rod per second
+Needs 32.0 Quantum Chip per second
+=================================================
+Dyson Sphere Component
+
+137 Assembling Machines needed to produce 32.0 per second
+
+Needs 76.8 Frame Material per second
+Needs 76.8 Solar Sail per second
+Needs 76.8 Processor per second
+=================================================
+Frame Material
+
+246 Assembling Machines needed to produce 76.8 per second
+
+Needs 245.7 Carbon Nanotubes per second
+Needs 61.4 Titanium Alloy per second
+Needs 61.4 High Purity Silicon per second
+=================================================
+Carbon Nanotubes
+
+197 Chemical Plants needed to produce 245.7 per second
+
+Needs 294.9 Graphene per second
+Needs 98.3 Titanium Ingot per second
+=================================================
+Graphene
+
+157 Chemical Plants needed to produce 391.1 per second
+
+Needs 312.9 Fire Ice per second
+=================================================
+Titanium Ingot
+
+250 Smelters needed to produce 312.1 per second
+
+Needs 499.3 Titanium Ore per second
+=================================================
+Titanium Alloy
+
+105 Smelters needed to produce 87.0 per second
+
+Needs 69.6 Titanium Ingot per second
+Needs 69.6 Steel per second
+Needs 139.2 Sulfuric Acid per second
+=================================================
+Steel
+
+84 Smelters needed to produce 69.6 per second
+
+Needs 167.1 Iron Ingot per second
+=================================================
+Iron Ingot
+
+199 Smelters needed to produce 497.4 per second
+
+Needs 397.9 Iron Ore per second
+=================================================
+Sulfuric Acid
+
+84 Chemical Plants needed to produce 139.2 per second
+
+Needs 167.1 Refined Oil per second
+Needs 222.8 Stone per second
+Needs 111.4 Water per second
+=================================================
+Refined Oil
+
+418 Oil Refinerys needed to produce 391.3 per second
+
+Needs 208.6 Refined Oil per second
+Needs 104.3 Hydrogen per second
+Needs 104.3 Coal per second
+=================================================
+High Purity Silicon
+
+312 Smelters needed to produce 389.1 per second
+
+Needs 622.5 Silicon Ore per second
+=================================================
+Solar Sail
+
+82 Assembling Machines needed to produce 76.8 per second
+
+Needs 30.7 Graphene per second
+Needs 30.7 Photon Combiner per second
+=================================================
+Photon Combiner
+
+50 Assembling Machines needed to produce 30.7 per second
+
+Needs 49.1 Prism per second
+Needs 24.5 Circuit Board per second
+=================================================
+Prism
+
+27 Assembling Machines needed to produce 49.1 per second
+
+Needs 58.9 Glass per second
+=================================================
+Glass
+
+100 Smelters needed to produce 124.5 per second
+
+Needs 199.2 Stone per second
+=================================================
+Circuit Board
+
+62 Assembling Machines needed to produce 229.3 per second
+
+Needs 183.5 Iron Ingot per second
+Needs 91.7 Copper Ingot per second
+=================================================
+Copper Ingot
+
+122 Smelters needed to produce 302.7 per second
+
+Needs 242.2 Copper Ore per second
+=================================================
+Processor
+
+205 Assembling Machines needed to produce 128.0 per second
+
+Needs 204.8 Circuit Board per second
+Needs 204.8 Microcrystalline Component per second
+=================================================
+Microcrystalline Component
+
+219 Assembling Machines needed to produce 204.8 per second
+
+Needs 327.6 High Purity Silicon per second
+Needs 163.8 Copper Ingot per second
+=================================================
+Deuteron Fuel Rod
+
+205 Assembling Machines needed to produce 64.0 per second
+
+Needs 25.6 Titanium Alloy per second
+Needs 512.0 Deuterium per second
+Needs 25.6 Super Magnetic Ring per second
+=================================================
+Deuterium
+
+205 Particle Colliders needed to produce 512.0 per second
+
+Needs 819.2 Hydrogen per second
+=================================================
+Super Magnetic Ring
+
+41 Assembling Machines needed to produce 25.6 per second
+
+Needs 40.9 Electromagnetic Turbine per second
+Needs 61.4 Magnet per second
+Needs 20.4 Energetic Graphite per second
+=================================================
+Electromagnetic Turbine
+
+44 Assembling Machines needed to produce 40.9 per second
+
+Needs 65.5 Electric Motor per second
+Needs 65.5 Magnetic Coil per second
+=================================================
+Electric Motor
+
+70 Assembling Machines needed to produce 65.5 per second
+
+Needs 104.8 Iron Ingot per second
+Needs 52.4 Gear per second
+Needs 52.4 Magnetic Coil per second
+=================================================
+Gear
+
+28 Assembling Machines needed to produce 52.4 per second
+
+Needs 41.9 Iron Ingot per second
+=================================================
+Magnetic Coil
+
+32 Assembling Machines needed to produce 117.9 per second
+
+Needs 94.3 Magnet per second
+Needs 47.1 Copper Ingot per second
+=================================================
+Magnet
+
+94 Smelters needed to produce 155.8 per second
+
+Needs 124.6 Iron Ore per second
+=================================================
+Energetic Graphite
+
+44 Smelters needed to produce 54.0 per second
+
+Needs 86.4 Coal per second
+=================================================
+Quantum Chip
+
+103 Assembling Machines needed to produce 32.0 per second
+
+Needs 51.2 Processor per second
+Needs 51.2 Plane Filter per second
+=================================================
+Plane Filter
+
+328 Assembling Machines needed to produce 51.2 per second
+
+Needs 40.9 Casimir Crystal per second
+Needs 81.9 Titanium Glass per second
+=================================================
+Casimir Crystal
+
+88 Assembling Machines needed to produce 40.9 per second
+
+Needs 32.7 Titanium Crystal per second
+Needs 65.5 Graphene per second
+Needs 393.2 Hydrogen per second
+=================================================
+Titanium Crystal
+
+70 Assembling Machines needed to produce 32.7 per second
+
+Needs 26.2 Organic Crystal per second
+Needs 78.6 Titanium Ingot per second
+=================================================
+Organic Crystal
+
+63 Chemical Plants needed to produce 26.2 per second
+
+Needs 41.9 Plastic per second
+Needs 20.9 Refined Oil per second
+Needs 20.9 Water per second
+=================================================
+Plastic
+
+51 Chemical Plants needed to produce 41.9 per second
+
+Needs 67.1 Refined Oil per second
+Needs 33.5 Energetic Graphite per second
+=================================================
+Titanium Glass
+
+110 Assembling Machines needed to produce 81.9 per second
+
+Needs 65.5 Glass per second
+Needs 65.5 Titanium Ingot per second
+Needs 65.5 Water per second
+=================================================
+
+Manufacturing Facilities:
+2211 Assembling Machines
+552 Chemical Plants
+1310 Smelters
+205 Particle Colliders
+418 Oil Refineries
+0 Matrix Labs
+
+RAW MATERIALS:
+312.9 Fire Ice per second
+499.3 Titanium Ore per second
+522.5 Iron Ore per second
+1316.7 Hydrogen per second
+190.8 Coal per second
+422.0 Stone per second
+197.9 Water per second
+622.5 Silicon Ore per second
+242.2 Copper Ore per second
