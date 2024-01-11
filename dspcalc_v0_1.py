@@ -8,7 +8,7 @@ timeUnitModifier = {"second":1, "minute":60, "hour":3600} #index using "timeUnit
 proliferatorBonus = {"none":1, "mki":1.125, "mkii":1.2, "mkiii":1.25}
 machineList = []
 machineMaxLevel = {"assembling machine": 4, "chemical plant": 2, "smelter": 3, "particle collider": 1, "oil refinery": 1, "matrix lab": 2, "proliferator": 3}
-machineSpeedDictionary = {"assembling machine": {1: 0.75, 2: 1, 3: 1.5, 4:3}, "chemical plant": {1: 1, 2: 2}, "smelter": {1: 1, 2: 2}, "particle collider": {1: 1}, "oil refinery": {1: 1}, "matrix lab": {1:1, 2:3}}
+machineSpeedDictionary = {"assembling machine": {1: 0.75, 2: 1, 3: 1.5, 4:3}, "chemical plant": {1: 1, 2: 2}, "smelter": {1: 1, 2: 2, 3: 3}, "particle collider": {1: 1}, "oil refinery": {1: 1}, "matrix lab": {1:1, 2:3}}
 possibleRareMatsOptionsList = [] #this is stupid but it works and I don't want to figure something else out right now
 configFilepath = os.path.abspath(r"config\config.json")
 
