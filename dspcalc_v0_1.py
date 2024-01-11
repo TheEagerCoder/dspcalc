@@ -7,8 +7,8 @@ import os
 timeUnitModifier = {"second":1, "minute":60, "hour":3600} #index using "timeUnit"
 proliferatorBonus = {"none":1, "mki":1.125, "mkii":1.2, "mkiii":1.25}
 machineList = []
-machineMaxLevel = {"assembling machine": 3, "chemical plant": 2, "smelter": 2, "particle collider": 1, "oil refinery": 1, "matrix lab": 1, "proliferator": 3}
-machineSpeedDictionary = {"assembling machine": {1: 0.75, 2: 1, 3: 1.5}, "chemical plant": {1: 1, 2: 2}, "smelter": {1: 1, 2: 2}, "particle collider": {1: 1}, "oil refinery": {1: 1}, "matrix lab": {1:1}}
+machineMaxLevel = {"assembling machine": 4, "chemical plant": 2, "smelter": 3, "particle collider": 1, "oil refinery": 1, "matrix lab": 2, "proliferator": 3}
+machineSpeedDictionary = {"assembling machine": {1: 0.75, 2: 1, 3: 1.5, 4:3}, "chemical plant": {1: 1, 2: 2}, "smelter": {1: 1, 2: 2}, "particle collider": {1: 1}, "oil refinery": {1: 1}, "matrix lab": {1:1, 2:3}}
 possibleRareMatsOptionsList = [] #this is stupid but it works and I don't want to figure something else out right now
 configFilepath = os.path.abspath(r"config\config.json")
 
@@ -20,7 +20,7 @@ except FileNotFoundError:
     timeUnit = "minute"
     proliferatorLevel = "mkiii"
     machineLevelUsed = {"assembling machine": 3, "chemical plant": 2, "smelter": 2, "particle collider": 1, "oil refinery": 1, "matrix lab": 1, "proliferator": 3}
-    usableRareMats = {"kimberlite ore": 'N', "fractal silicon": 'N', "optical grating crystal": 'N', "spiniform stalagmite crystal": 'N', "unipolar magnet": 'N', "fire ice": 'N'}
+    usableRareMats = {"kimberlite ore": 'N', "fractal silicon": 'N', "optical grating crystal": 'N', "spiniform stalagmite crystal": 'N', "unipolar magnet": 'N', "fire ice": 'N', 'organic crystal': 'N'}
     
     saveList = [timeUnit, proliferatorLevel, machineLevelUsed, usableRareMats]
     
@@ -30,7 +30,7 @@ except:
     print("Something has gone HORRIBLY wrong with the settings. \nDM u/FactoryBuilder. He'll be impressed if this code actually executes")
 
 #List of raw materials. Necessary for formatting().
-rawMaterialList = ["iron ore", "copper ore", "stone", "coal", "silicon ore", "titanium ore", "kimberlite ore", "fractal silicon", "optical grating crystal", "spiniform stalagmite crystal", "unipolar magnet", "fire ice", "critical photon", "crude oil", "hydrogen", "water"]
+rawMaterialList = ["iron ore", "copper ore", "stone", "coal", "silicon ore", "titanium ore", "kimberlite ore", "fractal silicon", "optical grating crystal", "spiniform stalagmite crystal", "unipolar magnet", "fire ice", "organic crystal", "critical photon", "crude oil", "hydrogen", "water"]
 
 
 #RELIC! RECIPES NOW EXIST IN AN EXTERNAL .JSON FILE. THIS IS NOT USED. (the variable name is though but it's not defined here)
@@ -87,7 +87,7 @@ rawMaterialList = ["iron ore", "copper ore", "stone", "coal", "silicon ore", "ti
                     "deuteron fuel rod": {"machine": "assembling machine", "producedAmount": 2, "timeToMake": 12, "titanium alloy": 1, "deuterium": 20, "super magnetic ring": 1},
                     "antimatter fuel rod": {"machine": "assembling machine", "producedAmount": 2, "timeToMake": 24, "antimatter": 12, "hydrogen": 12, "annihilation constraint sphere": 1, "titanium alloy": 1},
                     "plastic": {"machine": "chemical plant", "producedAmount": 1, "timeToMake": 3, "refined oil": 2, "energetic graphite": 1},
-                    "organic crystal": {"machine": "chemical plant", "producedAmount": 1, "timeToMake": 6, "plastic": 2, "refined oil": 1, "water": 1},
+                    "organic crystal": {"normal": {"machine": "chemical plant", "producedAmount": 1, "timeToMake": 6, "plastic": 2, "refined oil": 1, "water": 1}, "organic crystal": {"machine": None, "producedAmount": 1, "timeToMake": 1}},
                     "graphene": {"normal": {"machine": "chemical plant", "producedAmount": 2, "timeToMake": 3, "energetic graphite": 3, "sulfuric acid": 1}, "fire ice": {"machine": "chemical plant", "producedAmount": 2, "timeToMake": 2, "fire ice": 2, "byproduct": {"hydrogen":1}}},
                     "annihilation constraint sphere": {"machine": "assembling machine", "producedAmount": 1, "timeToMake": 20, "particle container": 1, "processor": 1},
                     "casimir crystal": {"normal": {"machine": "assembling machine", "producedAmount": 1, "timeToMake": 4, "titanium crystal": 1, "graphene": 2, "hydrogen": 12}, "optical grating crystal": {"machine": "assembling machine", "producedAmount": 1, "timeToMake": 4, "optical grating crystal": 8, "graphene": 2, "hydrogen": 12}},
@@ -244,7 +244,7 @@ def formatting(overallResults): #Takes the overallResults and puts them into an 
         separator = "\n=================================================\n" #inserts itself between two lines, you do not need to add \n to the end of your entry
         
         for dictionary in overallResults.copy(): #Products # Need to copy overallResults so that we reference the correct indices in overallResults. If we didn't, we'd be popping the wrong dictionaries as we go down the list.
-            if (dictionary["name"] not in rawMaterialList) and (dictionary["name"] != "byproduct") : # If the item is NOT a raw material or the byproduct dict:
+            if ((dictionary["name"] not in rawMaterialList) and (dictionary["name"] != "byproduct")) or ((dictionary["name"] == "organic crystal") and (usableRareMats["organic crystal"] == "N")): # If the item is NOT a raw material or the byproduct dict:
                 itemRecipe = findItemRecipe(dictionary)
                 machineName = itemRecipe["machine"] #access the key "machine" in the individual recipe dictionary to get the name of the machine.
                 line1 = separator + dictionary["name"].title() + "\n\n" #Name of product
