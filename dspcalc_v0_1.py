@@ -8,7 +8,7 @@ timeUnitModifier = {"second":1, "minute":60, "hour":3600} #index using "timeUnit
 proliferatorBonus = {"none":1, "mki":1.125, "mkii":1.2, "mkiii":1.25}
 machineList = []
 machineMaxLevel = {"assembling machine": 4, "chemical plant": 2, "smelter": 3, "particle collider": 1, "oil refinery": 1, "matrix lab": 2, "proliferator": 3}
-machineSpeedDictionary = {"assembling machine": {1: 0.75, 2: 1, 3: 1.5, 4:3}, "chemical plant": {1: 1, 2: 2}, "smelter": {1: 1, 2: 2, 3: 3}, "particle collider": {1: 1}, "oil refinery": {1: 1}, "matrix lab": {1:1, 2:3}}
+machineSpeedDictionary = {"assembling machine": {1: 0.75, 2: 1, 3: 1.5, 4:3}, "chemical plant": {1: 1, 2: 2}, "smelter": {1: 1, 2: 2}, "particle collider": {1: 1}, "oil refinery": {1: 1}, "matrix lab": {1:1, 2:3}}
 possibleRareMatsOptionsList = [] #this is stupid but it works and I don't want to figure something else out right now
 configFilepath = os.path.abspath(r"config\config.json")
 
@@ -168,13 +168,6 @@ def endToStart(itemDictionary, recursiveIngredient=False): #Contains the name of
     unproliferatedProductionRate = itemDictionary["amountPerSecond"] / proliferatorBonus[proliferatorLevel]
     #How much we would produce without proliferator bonus. Because *with* the bonus, it brings us to the needed rate.
     
-    for ingredient in list(itemRecipe.keys()): #if recipe contains the end product as an ingredient, add the amount of ingredient needed onto the "amountPerSecond"
-        if itemDictionary["name"] == ingredient:
-            ratio = itemRecipe[ingredient]/itemRecipe["producedAmount"]   
-            neededAmountFromIngredient = unproliferatedProductionRate * ratio
-            itemDictionary["amountPerSecond"] += neededAmountFromIngredient
-            unproliferatedProductionRate = itemDictionary["amountPerSecond"] / proliferatorBonus[proliferatorLevel] # redone with new "amountPerSecond"
-    
     ingredientsToCalculate = []
     for ingredient, amount in itemRecipe.items(): #amount is per batch
         if ingredient in recipeDictionary:
@@ -207,18 +200,22 @@ def endToStart(itemDictionary, recursiveIngredient=False): #Contains the name of
         endToStartResults.append(results)
         
     for ingredient_dictionary in ingredientsToCalculate: #Note: ingredient_dictionary is different from ingredientDictionary
-        if ingredient_dictionary["name"] == itemDictionary["name"]:
+        if ingredient_dictionary["name"] == itemDictionary["name"]:  #IIRC, this is supposed to stop an infinite recursion from the refined oil recipe.
             continue
         endToStart(ingredient_dictionary) #This will do everything above for each ingredient and their ingredients and their ingredients, etc, etc.
     
     return [endToStartResults, producedByproductAmount]
 
 def numMachineCalc(overallResults): #We do this after doing the calculations for how many items we need because we could need the same item at different points in the recipe and the cumulative amount of needed items might require an assembler or two less than the individual amounts would require.
-    #overallResults is expected to be the value returned by "endToStart"
+    #overallResults is expected to be the value returned by "endToStart" (which was modified by byproduct(). Variable has the same format.)
     for result in overallResults:
         if result["name"] != "byproduct": #skip byproduct dict
             itemRecipe = findItemRecipe(result) #gets the recipe for the item
             usingMachine = itemRecipe["machine"] #asks which machine we are using
+            if result["name"] == "refined oil": #gonna just squeeze this in. If it's the refined oil results, do this and then skip everything else. Refined oil is funky with its recipe. The numOfMachines is simply 4x the needed base rate. I did a bunch of math on paper that determined this.
+                numOfMachines = math.ceil(result["baseProductionRate"] * (4 / machineSpeedDictionary[usingMachine][machineLevelUsed[usingMachine]])) #if Youthcat ever comes out with a faster oil refinery, this code will still work. It's 4x refineries if the speed is 1.
+                result["numOfMachines"] = numOfMachines
+                continue
             if itemRecipe["machine"]:
                 numOfMachines = math.ceil(result["baseProductionRate"] / (itemRecipe["producedAmount"]/(itemRecipe["timeToMake"]/machineSpeedDictionary[usingMachine][machineLevelUsed[usingMachine]])))
                 # Break down the above math:
@@ -252,7 +249,11 @@ def formatting(overallResults): #Takes the overallResults and puts them into an 
                     line2 = str(dictionary["numOfMachines"]) + " " + machineName.title() #Number of machines needed....
                     totalNumMachines[machineName] += dictionary["numOfMachines"]
                     if dictionary["numOfMachines"] != 1:
-                        line2 += "s" #grammar
+                        if machineName.title() == "Oil Refinery":
+                            line2 = line2[:(len(line2)-1)]
+                            line2 += "ies" #grammar
+                        else:
+                            line2 += "s" #grammar
                 
                 line2 += " needed to produce " + str(fTruncate(dictionary["baseProductionRate"] * proliferatorBonus[proliferatorLevel] * timeUnitModifier[timeUnit])) + " per " + timeUnit #.... to produce x items per time unit (seconds, minutes, hours)
                 line3 = "\n" #newline
